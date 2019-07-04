@@ -9,12 +9,12 @@ import java.util.List;
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
-        List<Produto> findByNOme(String nome);
+        List<Produto> findByNome(String nome);
 
         List<Produto> findByPrecoLessThan(BigDecimal preco);
 
         List<Produto> findByPrecoGreaterThan(BigDecimal preco);
 
-        List<Produto> findByDescricaoBetween(BigDecimal preco);
+        
     }
-}
+

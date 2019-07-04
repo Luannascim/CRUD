@@ -16,7 +16,7 @@ public class ProdutoController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/produto")
     public  Produto save(@RequestBody Produto produto){
-        return ProdutoRepository.save(produto);
+        return produtoRepository.save(produto);
     }
 
     @GetMapping("/produtos")
@@ -25,6 +25,20 @@ public class ProdutoController {
     }
 
     @GetMapping("/produto/{id}")
-    public Optional<Produto>
+    public Optional<Produto> findByid(@PathVariable Long id) {
+        return produtoRepository.findById(id);
+    }
+
+    @PutMapping("/produto/id")
+    public Produto update(@PathVariable Long id, @RequestBody Produto produto) throws ResourceNotFoundException {
+        return produtoRepository.findById(id).map(updatedCliente -> {
+            updatedProduto.setNome(produto.getNome());
+            updatedProduto.setDescricao(produto.getDescricao());
+            updatedProduto.setPreco(produto.getPreco());
+            return produtoRepository.save(updatedCliente);
+        }).orElseThrow(() ->
+                new ResourceNotFoundException("Não há nenhum cliente com o id: " +id));
+
+
 
 }
